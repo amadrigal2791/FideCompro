@@ -3,7 +3,7 @@ import java.time.LocalDateTime;
 public class Usuario {
     private int id;
     private String nombreUsuario;
-    private String contraseña;
+    private String contrasena;
     private String nombre;
     private String apellido;
     private String email;
@@ -15,10 +15,10 @@ public class Usuario {
     public Usuario() {
     }
 
-    public Usuario(String nombreUsuario, String contraseña, String nombre,
+    public Usuario(String nombreUsuario, String contrasena, String nombre,
             String apellido, String email, String rol) {
         this.nombreUsuario = nombreUsuario;
-        this.contraseña = contraseña;
+        this.contrasena = contrasena;
         this.nombre = nombre;
         this.apellido = apellido;
         this.email = email;
@@ -43,12 +43,12 @@ public class Usuario {
         this.nombreUsuario = nombreUsuario;
     }
 
-    public String getContraseña() {
-        return contraseña;
+    public String getcontrasena() {
+        return contrasena;
     }
 
-    public void setContraseña(String contraseña) {
-        this.contraseña = contraseña;
+    public void setcontrasena(String contrasena) {
+        this.contrasena = contrasena;
     }
 
     public String getNombre() {

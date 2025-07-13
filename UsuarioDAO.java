@@ -11,11 +11,11 @@ public class UsuarioDAO implements BaseDAO<Usuario> {
 
     @Override
     public void insertar(Usuario usuario) throws DatabaseException {
-        String sql = "INSERT INTO usuarios (nombreUsuario, contraseña, nombre, apellido, email, rol) VALUES (?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO usuarios (nombreUsuario, contrasena, nombre, apellido, email, rol) VALUES (?, ?, ?, ?, ?, ?)";
 
         try (PreparedStatement stmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             stmt.setString(1, usuario.getNombreUsuario());
-            stmt.setString(2, usuario.getContraseña());
+            stmt.setString(2, usuario.getcontrasena());
             stmt.setString(3, usuario.getNombre());
             stmt.setString(4, usuario.getApellido());
             stmt.setString(5, usuario.getEmail());
@@ -38,11 +38,11 @@ public class UsuarioDAO implements BaseDAO<Usuario> {
 
     @Override
     public void actualizar(Usuario usuario) throws DatabaseException {
-        String sql = "UPDATE usuarios SET nombreUsuario = ?, contraseña = ?, nombre = ?, apellido = ?, email = ?, rol = ?, activo = ? WHERE id = ?";
+        String sql = "UPDATE usuarios SET nombreUsuario = ?, contrasena = ?, nombre = ?, apellido = ?, email = ?, rol = ?, activo = ? WHERE id = ?";
 
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setString(1, usuario.getNombreUsuario());
-            stmt.setString(2, usuario.getContraseña());
+            stmt.setString(2, usuario.getcontrasena());
             stmt.setString(3, usuario.getNombre());
             stmt.setString(4, usuario.getApellido());
             stmt.setString(5, usuario.getEmail());
@@ -128,12 +128,12 @@ public class UsuarioDAO implements BaseDAO<Usuario> {
     }
 
     // Métodos específicos para Usuario
-    public Usuario autenticar(String nombreUsuario, String contraseña) throws DatabaseException {
-        String sql = "SELECT * FROM usuarios WHERE nombreUsuario = ? AND contraseña = ? AND activo = 1";
+    public Usuario autenticar(String nombreUsuario, String contrasena) throws DatabaseException {
+        String sql = "SELECT * FROM usuarios WHERE nombreUsuario = ? AND contrasena = ? AND activo = 1";
 
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setString(1, nombreUsuario);
-            stmt.setString(2, contraseña);
+            stmt.setString(2, contrasena);
 
             try (ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) {
@@ -186,7 +186,7 @@ public class UsuarioDAO implements BaseDAO<Usuario> {
         Usuario usuario = new Usuario();
         usuario.setId(rs.getInt("id"));
         usuario.setNombreUsuario(rs.getString("nombreUsuario"));
-        usuario.setContraseña(rs.getString("contraseña"));
+        usuario.setcontrasena(rs.getString("contrasena"));
         usuario.setNombre(rs.getString("nombre"));
         usuario.setApellido(rs.getString("apellido"));
         usuario.setEmail(rs.getString("email"));
